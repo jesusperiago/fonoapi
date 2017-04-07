@@ -40,6 +40,24 @@ class FonApi:
             return result.json()
         except AttributeError:
             return result
+        
+    def getlatestdevices(self, brand=None, limit=None):
+        """
+            Get latest devices and return a json list
+        :param brand:
+        :param limit:
+        :return device list:
+        """
+        url = self.__ApiUrl + 'getlatest'
+        postdata = {'brand': brand,
+                    'limit': limit,
+                    'token': self.__ApiKey}
+        headers = {'content-type': 'application/json'}
+        result = self.sendpostdata(url, postdata, headers)
+        try:
+            return result.json()
+        except AttributeError:
+            return result
 
     def sendpostdata(self, url, postdata, headers, result = None):
         """
